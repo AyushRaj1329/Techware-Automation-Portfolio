@@ -1,86 +1,135 @@
+
 import { motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
+import heroMachine from "../assets/herobackground_img.jpg"; // Your machine image
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center overflow-hidden bg-slate-950"
+    >
+      {/* Background */}
       <div className="absolute inset-0">
-        <video autoPlay muted loop playsInline className="w-full h-full object-cover">
-          <source src="https://videos.pexels.com/video-files/5532765/5532765-sd_640_360_25fps.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/75 to-foreground/40" />
-        <div className="absolute inset-0 grid-overlay opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.15),transparent_40%)]" />
       </div>
 
-      <div className="section-container relative z-10 pt-20">
-        <div className="max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm mb-6"
-          >
-            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-            <span className="text-sm font-medium text-white/90">Precision Automation Solutions</span>
-          </motion.div>
+      <div className="container mx-auto px-6 relative z-10 pt-24">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] mb-6 text-white"
-          >
-            Advanced Automation Machines for{" "}
-            <span className="text-amber-400">Card Manufacturing</span> Industry
-          </motion.h1>
+          {/* LEFT CONTENT */}
+          <div>
+           
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="text-lg md:text-xl text-white/70 max-w-xl mb-10"
-          >
-            Precision-driven systems for validation, sorting, and production efficiency.
-            Built to scale with your operations.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.7 }}
-            className="flex flex-wrap gap-4"
-          >
-            <a
-              href="#machines"
-              className="cta-gradient text-white font-semibold px-8 py-3 rounded-lg hover:opacity-90 transition-opacity inline-flex items-center gap-2"
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-5xl md:text-6xl xl:text-7xl font-bold text-white leading-tight mb-6"
             >
-              View Machines <ArrowRight className="h-4 w-4" />
-            </a>
-            <a
-              href="#contact"
-              className="border border-white/30 text-white hover:bg-white/10 px-8 py-3 rounded-lg transition-colors inline-flex items-center gap-2 bg-transparent"
-            >
-              <Play className="h-4 w-4" /> Contact Us
-            </a>
-          </motion.div>
+              Advanced Automation Machines for{" "}
+              <span className="text-amber-400">
+                Card Manufacturing
+              </span>{" "}
+              Industry
+            </motion.h1>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1 }}
-            className="flex gap-10 mt-16 pt-8 border-t border-white/20"
-          >
-            {[
-              { value: "150+", label: "Machines Deployed" },
-              { value: "99.8%", label: "Accuracy Rate" },
-              { value: "12+", label: "Years Experience" },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <div className="font-display text-2xl md:text-3xl font-bold text-amber-400">{stat.value}</div>
-                <div className="text-sm text-white/60 mt-1">{stat.label}</div>
+            <motion.p
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-lg md:text-xl text-slate-300 max-w-xl mb-10"
+            >Delivering Industrial Automation, PLC Integration, Custom Machines, Software Solutions, and Card Validation for efficient and reliable operations.
+            </motion.p>
+
+            {/* Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="flex flex-wrap gap-4 mb-12"
+            >
+              <a
+                href="#machines"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold flex items-center gap-2 transition"
+              >
+                View Machines
+                <ArrowRight size={18} />
+              </a>
+
+              <a
+                href="#contact"
+                className="border border-white/20 hover:bg-white/10 text-white px-8 py-4 rounded-xl font-semibold flex items-center gap-2 transition"
+              >
+                <Play size={18} />
+                Contact Us
+              </a>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="grid grid-cols-3 gap-6 border-t border-white/10 pt-8"
+            >
+              <div>
+                <h3 className="text-3xl font-bold text-amber-400">
+                  100+
+                </h3>
+                <p className="text-slate-400 text-sm">
+                  Machines Deployed
+                </p>
               </div>
-            ))}
+
+              <div>
+                <h3 className="text-3xl font-bold text-amber-400">
+                  99.8%
+                </h3>
+                <p className="text-slate-400 text-sm">
+                  Accuracy Rate
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-3xl font-bold text-amber-400">
+                  20+
+                </h3>
+                <p className="text-slate-400 text-sm">
+                  Years Experience
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* RIGHT IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="hidden lg:flex justify-center relative"
+          >
+            <img
+              src={heroMachine}
+              alt="Techware Automation Machine"
+              className="w-full max-w-2xl object-contain drop-shadow-[0_25px_50px_rgba(59,130,246,0.35)]"
+            />
+
+            {/* Floating Tags */}
+            <div className="absolute top-10 left-0 bg-white rounded-xl px-4 py-2 shadow-xl">
+              <span className="font-semibold text-slate-800">
+                PLC Integration
+              </span>
+            </div>
+
+            <div className="absolute bottom-16 right-0 bg-white rounded-xl px-4 py-2 shadow-xl">
+              <span className="font-semibold text-slate-800">
+                 Card Testing
+              </span>
+            </div>
           </motion.div>
+
         </div>
       </div>
     </section>
@@ -88,3 +137,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+

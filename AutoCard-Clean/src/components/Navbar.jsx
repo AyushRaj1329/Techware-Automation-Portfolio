@@ -1,27 +1,28 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, ShieldCheck, Briefcase, User } from "lucide-react";
-
+import logo from "../assets/techwareLogo.jpg";
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "Services", href: "#services" },
-  { label: "Machines", href: "#machines" },
-  { label: "Solutions", href: "#solutions" },
+  { label: "Product", href: "#machines" },
   { label: "Contact", href: "#contact" },
 ];
 
-const loginRoles = [
-  { role: "admin", label: "Login as Admin", desc: "System administration access", icon: ShieldCheck },
-  { role: "employee", label: "Login as Employee", desc: "Staff dashboard access", icon: Briefcase },
-  { role: "customer", label: "Login as Customer", desc: "Track orders & support", icon: User },
-];
+// const loginRoles = [
+//   { role: "admin", label: "Login as Admin", desc: "System administration access", icon: ShieldCheck },
+//   { role: "employee", label: "Login as Employee", desc: "Staff dashboard access", icon: Briefcase },
+//   { role: "customer", label: "Login as Customer", desc: "Track orders & support", icon: User },
+// ];
 
-const Navbar = () => {
+const Navbar = ({ staticPosition = false }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const loginRef = useRef(null);
+  const { pathname } = useLocation();
+  const sectionPath = pathname === "/" ? "" : "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -39,35 +40,38 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", onClickOutside);
   }, []);
 
+  const isSolid = staticPosition || scrolled;
+
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm" : ""
-      }`}
+      className={`${staticPosition ? "sticky" : "fixed"} top-0 left-0 right-0 z-50 transition-all duration-300 ${isSolid ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm" : ""
+        }`}
     >
       <div className="section-container flex items-center justify-between h-16 md:h-20">
-        <a href="#home" className={`font-display text-xl md:text-2xl font-bold tracking-tight ${scrolled ? "" : "text-white"}`}>
-          <span className={scrolled ? "gradient-text" : "text-amber-400"}>AutoCard</span>
-          <span> Systems</span>
+        <a href={`${sectionPath}#home`} className="flex items-center">
+          <img
+            src={logo}
+            alt="Techware Automation India"
+            className="h-18 md:h-20 w-auto"
+          />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.href}
-              href={link.href}
-              className={`text-sm font-medium transition-colors ${
-                scrolled ? "text-muted-foreground hover:text-foreground" : "text-white/70 hover:text-white"
-              }`}
+              href={`${sectionPath}${link.href}`}
+              className={`text-sm font-medium transition-colors ${isSolid ? "text-muted-foreground hover:text-foreground" : "text-white/70 hover:text-white"
+                }`}
             >
               {link.label}
             </a>
           ))}
 
-          <div className="relative" ref={loginRef}>
+          {/* <div className="relative" ref={loginRef}>
             <button
               onClick={() => setLoginOpen((o) => !o)}
               className="cta-gradient text-white font-semibold px-6 py-2 rounded-lg hover:opacity-90 transition-opacity text-sm inline-flex items-center gap-1.5"
@@ -104,11 +108,11 @@ const Navbar = () => {
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
+          </div> */}
         </div>
 
         <button
-          className={`md:hidden ${scrolled ? "text-foreground" : "text-white"}`}
+          className={`md:hidden ${isSolid ? "text-foreground" : "text-white"}`}
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -127,7 +131,7 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <a
                   key={link.href}
-                  href={link.href}
+                  href={`${sectionPath}${link.href}`}
                   onClick={() => setMobileOpen(false)}
                   className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 >

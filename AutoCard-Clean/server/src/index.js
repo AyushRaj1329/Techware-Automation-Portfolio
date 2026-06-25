@@ -1,7 +1,8 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import prisma from "./prismaClient.js";
+import rateLimit from "express-rate-limit";
+//import prisma from "./prismaClient.js";
 import authRouter from "./routes/auth.js";
 import employeesRouter from "./routes/employees.js";
 import onboardingRouter from "./routes/onboarding.js";
@@ -9,9 +10,10 @@ import requestsRouter from "./routes/requests.js";
 import leaveTypesRouter from "./routes/leaveTypes.js";
 import holidaysRouter from "./routes/holidays.js";
 import attendanceRouter from "./routes/attendance.js";
-
+import contactRoutes from "./routes/email.js";
 const app = express();
 const PORT = process.env.PORT || 4000;
+
 
 // Allow the configured client origin plus common local Vite ports.
 const allowedOrigins = [
@@ -23,7 +25,6 @@ const allowedOrigins = [
 app.use(
   cors({
     origin(origin, callback) {
-      // Allow non-browser tools (no origin) and any allowed localhost port.
       if (!origin || allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
@@ -32,7 +33,24 @@ app.use(
     credentials: true,
   })
 );
+
+
+const contactLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  message: {
+    success: false,
+    message: "Too many requests. Try again later.",
+  },
+});
+
+app.use("/api/contact", contactLimiter);
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Serve uploaded files
+app.use("/uploads", express.static("uploads"));
 
 // Routes
 app.use("/api/auth", authRouter);
@@ -42,15 +60,13 @@ app.use("/api/requests", requestsRouter);
 app.use("/api/leave-types", leaveTypesRouter);
 app.use("/api/holidays", holidaysRouter);
 app.use("/api/attendance", attendanceRouter);
-
+app.use("/api/contact", contactRoutes);
 // Health check - also verifies the database connection.
-app.get("/api/health", async (_req, res) => {
-  try {
-    await prisma.$queryRaw`SELECT 1`;
-    res.json({ status: "ok", database: "connected" });
-  } catch (err) {
-    res.status(500).json({ status: "error", database: "disconnected", message: err.message });
-  }
+app.get("/api/health", (_req, res) => {
+  res.json({
+    status: "ok",
+    server: "running"
+  });
 });
 
 app.listen(PORT, () => {
@@ -58,8 +74,7 @@ app.listen(PORT, () => {
 });
 
 // Graceful shutdown.
-const shutdown = async () => {
-  await prisma.$disconnect();
+const shutdown = () => {
   process.exit(0);
 };
 process.on("SIGINT", shutdown);

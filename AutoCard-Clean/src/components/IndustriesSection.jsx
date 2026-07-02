@@ -9,7 +9,7 @@ const industries = [
   { image: industryBanking, name: "Banking Cards", desc: "Debit, credit, and prepaid card manufacturing automation." },
   { image: industryId, name: "ID Cards", desc: "National ID, driver's license, and access card production." },
   { image: industrySim, name: "SIM Cards", desc: "Telecom SIM card validation, sorting, and packaging." },
-  { image: industrySmart, name: "Smart Cards", desc: "Chip-based smart card testing and quality assurance." },
+  { image: industrySmart, name: "Smart Cards", desc: "Chip-based card testing and quality assurance." },
 ];
 
 const IndustriesSection = () => {

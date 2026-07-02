@@ -1,7 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 import Index from "./pages/Index.jsx";
 import Login from "./pages/Login.jsx";
+import Machines from "./pages/Machines.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 import AdminLayout from "./admin/AdminLayout.jsx";
@@ -31,9 +33,11 @@ import CustomerProjects from "./customer/pages/Projects.jsx";
 
 const App = () => (
   <BrowserRouter>
+    <ScrollToTop />
     <Toaster position="top-right" />
     <Routes>
       <Route path="/" element={<Index />} />
+      <Route path="/machines" element={<Machines />} />
       <Route path="/login/:role" element={<Login />} />
 
       <Route path="/admin" element={<AdminLayout />}>

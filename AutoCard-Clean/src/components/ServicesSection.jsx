@@ -1,17 +1,35 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import serviceAutomation from "../assets/service-automation-design.jpg";
+import serviceAutomation from "../assets/IA.jpg";
 import serviceMachineDev from "../assets/service-machine-dev.jpg";
 import serviceCardValidation from "../assets/service-card-validation.jpg";
 import serviceEmbedded from "../assets/service-embedded.jpg";
 import serviceMaintenance from "../assets/service-maintenance.jpg";
-
+import plcIntregation from "../assets/PLC.jpg"
+import serviceRefurbishment from "../assets/Refurbishment.jpg"
+import serviceSpare from "../assets/spare.jpg"
 const services = [
-  { image: serviceAutomation, title: "Industrial Automation Design", desc: "End-to-end design of automation systems tailored for card manufacturing production lines." },
-  { image: serviceMachineDev, title: "Machine Development", desc: "Custom machine development from concept to deployment, built for high-volume environments." },
-  { image: serviceCardValidation, title: "Card Validation Systems", desc: "Automated QR, barcode, and visual inspection systems for real-time card validation." },
-  { image: serviceEmbedded, title: "Custom Software Solutions", desc: "Full-stack applications for automation control and monitoring." },
-  { image: serviceMaintenance, title: "Maintenance & Support", desc: "Ongoing technical support, preventive maintenance, and system upgrades for peak performance." },
+  {
+    image: serviceAutomation, title: "Industrial Automation",
+    desc: "Automated solutions to optimize industrial processes and productivity."
+  },
+  {
+    image: serviceMachineDev, title: "Custom Machine Development",
+    desc: "Design and manufacturing of specialized testing and automation machines."
+  },
+  {
+    image: serviceCardValidation, title: "Card Validation Solutions",
+    desc: "Advanced card testing and validation equipment."
+  },
+  { image: serviceEmbedded, title: "Custom Software Solutions", desc: "Custom software solutions for industrial automation and monitoring." },
+  { image: serviceMaintenance, title: "Machine Maintenance & Support", desc: "Comprehensive maintenance and technical support services." },
+  { image: plcIntregation, title: "PLC Integration & Programming", desc: "PLC programming, HMI development, SCADA integration, and industrial communication solutions." },
+  { image: serviceRefurbishment, title: "Machine Refurbishment", desc: "Machine upgrades, repairs, and performance enhancement." },
+ {
+  image: serviceSpare,
+   title: "Spare & Sealing Parts",
+  desc: "Precision components for industrial machinery."
+}
 ];
 
 const ServicesSection = () => {

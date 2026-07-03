@@ -6,12 +6,8 @@ import multer from "multer";
 const router = Router();
 
 // Multer Config
-const storage = multer.diskStorage({
-  destination: "uploads/",
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
+const storage = multer.memoryStorage();
+
 
 const upload = multer({
   storage,
@@ -131,7 +127,8 @@ router.post(
       if (req.file) {
         attachments.push({
           filename: req.file.originalname,
-          path: req.file.path,
+          content: req.file.buffer,
+          contentType: req.file.mimetype,
         });
       }
 

@@ -189,7 +189,11 @@ const machines = [
     "Easy Maintenance"
   ]
 },
+<<<<<<< HEAD
   
+=======
+ 
+>>>>>>> ad9fcb736e626bab6966f9502a993290a6a4acf6
   {
   name: "PC-Based Online ATR Tester",
   image: pc_based_atr,

@@ -13,9 +13,9 @@ import mechineManualImada from "../assets/manualmada.jpg"
 import laserFumeExtractor from "../assets/Laser_Fume_Extractor.jpg"
 import labelApplicatorMachine from "../assets/Label_Applicator_Machine.jpg"
 import dualHeadCardPunchingMachine  from "../assets/Dual_Head_Card_Punching_Machine.jpg"
-import acs from "../assets/ACS.jpg"
+import acs from "../assets/acs.jpg"
 import pc_based_atr from "../assets/PC_based_ATR.jpg"
-import threeCardPunchingMachine from "../assets/threeCardPunchingMachine.jpg"
+import three_card_punching_machine from "../assets/threeCardPunchingMachine.jpg"
 
 const machines = [
   {
@@ -40,7 +40,7 @@ const machines = [
   image: acs,
   desc: "Advanced PC-Based Online ATR Tester designed for automatic smart card validation using ATR readers. It provides real-time card testing, pass/fail detection, data logging, and seamless PLC integration for efficient quality control in smart card production.",
   features: [
-    "ATR Reader Integration",
+    "ACS Reader Integration",
     "Real-Time Card Testing",
     "Automatic Pass/Fail",
     "PC-Based Software",
@@ -78,21 +78,6 @@ const machines = [
     ],
 
   },
-   {
-    name: "Manual Milling Machine with Imada",
-    image: mechineManualImada,
-    desc: "The Manual Milling Machine with Imada is a specialized smart card manufacturing and quality testing solution designed for precision pocket milling, module push-pull testing, and force verification applications. Equipped with an integrated Imada Force Gauge, the machine enables accurate measurement of module bonding strength and insertion force, ensuring compliance with smart card industry quality standards. Its robust construction and precision-engineered design make it ideal for smart card manufacturers, quality control laboratories, and R&D facilities requiring reliable milling and force testing capabilities.",
-    features: [
-      "Imada Force Gauge Integration",
-      "Manual Pocket Milling",
-      "Module Push-Pull Testing",
-      "High Accuracy Measurement",
-      "Smart Card Quality Testing",
-      "RFID Card Support",
-      "Reliable Force Verification",
-      "Industrial Grade Construction",
-    ],
-  },
   {
     name: "Module Pushpull Tester",
     image: mechineModulePushpullTester,
@@ -124,7 +109,21 @@ const machines = [
     ],
 
   },
- 
+  {
+    name: "Manual Milling Machine with Imada",
+    image: mechineManualImada,
+    desc: "The Manual Milling Machine with Imada is a specialized smart card manufacturing and quality testing solution designed for precision pocket milling, module push-pull testing, and force verification applications. Equipped with an integrated Imada Force Gauge, the machine enables accurate measurement of module bonding strength and insertion force, ensuring compliance with smart card industry quality standards. Its robust construction and precision-engineered design make it ideal for smart card manufacturers, quality control laboratories, and R&D facilities requiring reliable milling and force testing capabilities.",
+    features: [
+      "Imada Force Gauge Integration",
+      "Manual Pocket Milling",
+      "Module Push-Pull Testing",
+      "High Accuracy Measurement",
+      "Smart Card Quality Testing",
+      "RFID Card Support",
+      "Reliable Force Verification",
+      "Industrial Grade Construction",
+    ],
+  },
  {
   name: "Label Applicator Machine",
   image: labelApplicatorMachine,
@@ -166,7 +165,7 @@ const machines = [
 
   {
   name: "Three Card Punching Machine",
-  image: threeCardPunchingMachine,
+  image: three_card_punching_machine,
   desc: "Automatic Three Card Punching Machine engineered to punch three PVC or smart cards simultaneously in a single cycle. It offers high-speed production, precise punching, and reliable performance for large-scale card manufacturing.",
   features: [
     "Three Card Simultaneous Punching",

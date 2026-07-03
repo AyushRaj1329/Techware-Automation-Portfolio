@@ -15,6 +15,7 @@ import labelApplicatorMachine from "../assets/Label_Applicator_Machine.jpg"
 import dualHeadCardPunchingMachine  from "../assets/Dual_Head_Card_Punching_Machine.jpg"
 import acs from "../assets/ACS.jpg"
 import pc_based_atr from "../assets/PC_based_ATR.jpg"
+import threeCardPunchingMachine from "../assets/threeCardPunchingMachine.jpg"
 
 const machines = [
   {
@@ -35,11 +36,11 @@ const machines = [
     ],
   },
   {
-  name: "PC-Based Online ACS Tester",
+  name: "PC-Based Online ATR Tester",
   image: acs,
-  desc: "Advanced PC-Based Online ACS Tester designed for automatic smart card validation using ACS readers. It provides real-time card testing, pass/fail detection, data logging, and seamless PLC integration for efficient quality control in smart card production.",
+  desc: "Advanced PC-Based Online ATR Tester designed for automatic smart card validation using ATR readers. It provides real-time card testing, pass/fail detection, data logging, and seamless PLC integration for efficient quality control in smart card production.",
   features: [
-    "ACS Reader Integration",
+    "ATR Reader Integration",
     "Real-Time Card Testing",
     "Automatic Pass/Fail",
     "PC-Based Software",
@@ -164,7 +165,7 @@ const machines = [
 
   {
   name: "Three Card Punching Machine",
-  image: "/machines/three-card-punching-machine.webp",
+  image: threeCardPunchingMachine,
   desc: "Automatic Three Card Punching Machine engineered to punch three PVC or smart cards simultaneously in a single cycle. It offers high-speed production, precise punching, and reliable performance for large-scale card manufacturing.",
   features: [
     "Three Card Simultaneous Punching",
@@ -187,19 +188,7 @@ const machines = [
     "Easy Maintenance"
   ]
 },
-  {
-  name: "Milling Dust Collector",
-  image: "/machines/milling-dust-collector.webp",
-  desc: "High-efficiency Milling Dust Collector designed to capture fine dust and debris generated during card milling and precision machining. It ensures a clean workspace, protects equipment, and improves production quality with reliable dust extraction.",
-  features: [
-    "High Suction Power",
-    "Multi-Stage Filtration",
-    "Low Noise Operation",
-    "Compact Design",
-    "Continuous Dust Collection",
-    "Easy Maintenance"
-  ]
-},
+ 
   {
   name: "PC-Based Online ATR Tester",
   image: pc_based_atr,

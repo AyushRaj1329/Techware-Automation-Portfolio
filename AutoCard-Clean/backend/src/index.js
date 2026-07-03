@@ -2,20 +2,12 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
-//import prisma from "./prismaClient.js";
-import authRouter from "./routes/auth.js";
-import employeesRouter from "./routes/employees.js";
-import onboardingRouter from "./routes/onboarding.js";
-import requestsRouter from "./routes/requests.js";
-import leaveTypesRouter from "./routes/leaveTypes.js";
-import holidaysRouter from "./routes/holidays.js";
-import attendanceRouter from "./routes/attendance.js";
 import contactRoutes from "./routes/email.js";
+
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-
-// Allow the configured client origin plus common local Vite ports.
+// Allow configured client origin + common local Vite ports
 const allowedOrigins = [
   process.env.CLIENT_ORIGIN || "http://localhost:5173",
   "http://localhost:5173",
@@ -34,10 +26,10 @@ app.use(
   })
 );
 
-
+// Rate-limit the contact endpoint
 const contactLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
-  max: 100,
+  max: 10,
   standardHeaders: true,
   legacyHeaders: false,
   message: {
@@ -46,38 +38,24 @@ const contactLimiter = rateLimit({
   },
 });
 
-app.use("/api/contact", contactLimiter);
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve uploaded files
+// Serve uploaded files (contact form attachments)
 app.use("/uploads", express.static("uploads"));
 
 // Routes
-app.use("/api/auth", authRouter);
-app.use("/api/employees", employeesRouter);
-app.use("/api/onboarding", onboardingRouter);
-app.use("/api/requests", requestsRouter);
-app.use("/api/leave-types", leaveTypesRouter);
-app.use("/api/holidays", holidaysRouter);
-app.use("/api/attendance", attendanceRouter);
-app.use("/api/contact", contactRoutes);
-// Health check - also verifies the database connection.
+app.use("/api/contact", contactLimiter, contactRoutes);
+
+// Health check
 app.get("/api/health", (_req, res) => {
-  res.json({
-    status: "ok",
-    server: "running"
-  });
+  res.json({ status: "ok", server: "running" });
 });
 
 app.listen(PORT, () => {
-  console.log(`API server running on http://localhost:${PORT}/api/health`);
+  console.log(`Contact API running on http://localhost:${PORT}/api/health`);
 });
 
-// Graceful shutdown.
-const shutdown = () => {
-  process.exit(0);
-};
+const shutdown = () => process.exit(0);
 process.on("SIGINT", shutdown);
 process.on("SIGTERM", shutdown);

@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "description": "Contact/email API for Techware Automation website",
-  "main": "src/index.js",
+  "main": "api/index.js",
   "scripts": {
-    "dev": "node --watch src/index.js",
-    "start": "node src/index.js"
+    "dev": "node --watch server.js",
+    "start": "node server.js"
   },
   "dependencies": {
     "cors": "^2.8.6",

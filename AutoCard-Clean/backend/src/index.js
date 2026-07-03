@@ -5,7 +5,6 @@ import rateLimit from "express-rate-limit";
 import contactRoutes from "./routes/email.js";
 
 const app = express();
-const PORT = process.env.PORT || 4000;
 
 // Allow configured client origin + common local Vite ports
 const allowedOrigins = [
@@ -41,9 +40,6 @@ const contactLimiter = rateLimit({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve uploaded files (contact form attachments)
-app.use("/uploads", express.static("uploads"));
-
 // Routes
 app.use("/api/contact", contactLimiter, contactRoutes);
 
@@ -52,10 +48,4 @@ app.get("/api/health", (_req, res) => {
   res.json({ status: "ok", server: "running" });
 });
 
-app.listen(PORT, () => {
-  console.log(`Contact API running on http://localhost:${PORT}/api/health`);
-});
-
-const shutdown = () => process.exit(0);
-process.on("SIGINT", shutdown);
-process.on("SIGTERM", shutdown);
+export default app;

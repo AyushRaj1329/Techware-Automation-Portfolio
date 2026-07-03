@@ -11,6 +11,9 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa";
 
+const API_BASE =
+  import.meta.env.VITE_API_URL || "http://localhost:4000";
+
 const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -65,9 +68,8 @@ const ContactSection = () => {
       setLoading(true);
 
       const response = await axios.post(
-        "http://localhost:4000/api/contact",
-        data,
-
+        `${API_BASE}/api/contact`,
+        data
       );
 
       toast.success(response.data.message);

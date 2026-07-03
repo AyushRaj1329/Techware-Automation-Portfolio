@@ -13,7 +13,7 @@ import mechineManualImada from "../assets/manualmada.jpg"
 import laserFumeExtractor from "../assets/Laser_Fume_Extractor.jpg"
 import labelApplicatorMachine from "../assets/Label_Applicator_Machine.jpg"
 import dualHeadCardPunchingMachine  from "../assets/Dual_Head_Card_Punching_Machine.jpg"
-import acs from "../assets/acs.jpg"
+import acs from "../assets/ACS.jpg"
 import pc_based_atr from "../assets/PC_based_ATR.jpg"
 
 const machines = [

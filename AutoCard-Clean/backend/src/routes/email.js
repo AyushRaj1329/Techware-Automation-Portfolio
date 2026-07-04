@@ -88,6 +88,10 @@ const contactSchema = z.object({
 });
 
 // POST /api/contact
+console.log("[email route] EMAIL_USER set:", !!process.env.EMAIL_USER);
+console.log("[email route] EMAIL_PASS set:", !!process.env.EMAIL_PASS);
+console.log("[email route] EMAIL_TO set:", !!process.env.EMAIL_TO);
+
 router.post(
   "/",
   upload.single("photo"),
@@ -156,11 +160,14 @@ router.post(
         message: "Message sent successfully",
       });
     } catch (err) {
-      console.error("Contact Form Error:", err);
+      console.error("Contact Form Error:", err.message);
+      console.error("Error code:", err.code);
+      console.error("Error stack:", err.stack);
 
       return res.status(500).json({
         success: false,
         message: "Failed to send message",
+        ...(process.env.NODE_ENV !== "production" && { error: err.message }),
       });
     }
 

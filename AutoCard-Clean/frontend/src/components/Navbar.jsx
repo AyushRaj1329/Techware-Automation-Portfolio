@@ -158,6 +158,7 @@ const Navbar = ({ staticPosition = false }) => {
                 </a>
               ))}
 
+              {/* Login roles hidden until auth is re-enabled
               <div className="pt-2 border-t border-border">
                 <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Login</div>
                 <div className="flex flex-col gap-2">
@@ -179,6 +180,7 @@ const Navbar = ({ staticPosition = false }) => {
                   ))}
                 </div>
               </div>
+              */}
             </div>
           </motion.div>
         )}

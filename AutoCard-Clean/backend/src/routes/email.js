@@ -134,7 +134,7 @@ router.post(
 
       const info = await transporter.sendMail({
         from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_USER,
+        to: process.env.EMAIL_TO || process.env.EMAIL_USER,
         replyTo: email,
         subject: `New Website Inquiry - ${name}`,
         html: `
